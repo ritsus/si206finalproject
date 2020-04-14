@@ -32,20 +32,40 @@ def searchRecipe(product):
         d1 = {}
     
     for r in d1['hits']:
-        recipe.append(r)
+        recipe.append(r['recipe'])
 
     return recipe
 
-def setUpDatabase(db_name):
+def setUpDatabase(db_name, product):
     path = os.path.dirname(os.path.abspath(__file__))
-    conn = sqlite3.connect(path+'/'+db_name)
+    conn = sqlite3.connect(path+'/'+db_name + ".db")
     cur = conn.cursor()
-    return cur, conn
+
+    recipe = searchRecipe(product)
+
+
+    
+    cur.execute("DROP TABLE IF EXISTS Recipes")
+    cur.execute("CREATE TABLE Recipes (dish_id INTEGER PRIMARY KEY, main_product, dish, ingredients, calories)")
+
+    for r in recipe:
+        dish = r['label']
+        ingredient = ''
+        calories = int(r['calories'])
+        for ing in r['ingredientLines']:
+            ingredient += ing + ', '
+            
+        cur.execute('''INSERT INTO Recipes (main_product, dish, ingredients, calories) 
+            VALUES (?,?,?,?)''',(product, dish, ingredient, calories) )
+
+    conn.commit()
+    
+
 
 
 
 
 if __name__ == "__main__":
-    print(searchRecipe("chicken"))
+    setUpDatabase('Food Data', 'chicken')
 
 
