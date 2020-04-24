@@ -35,19 +35,16 @@ def searchRecipe(product):
     return recipe
 
 def setUpDatabase(cur, conn, product):
-
-
     recipe = searchRecipe(product)
-    
     cur.execute("DROP TABLE IF EXISTS Recipes")
-    cur.execute("CREATE TABLE Recipes (dish_id INTEGER PRIMARY KEY, main_product, dish, ingredients, calories)")
+    cur.execute("CREATE TABLE IF NOT EXISTS Recipes (dish_id INTEGER PRIMARY KEY, main_product, dish, ingredients, calories)")
 
     for r in recipe:
         dish = r['label']
         ingredient = ''
         calories = int(r['calories'])
         for ing in r['ingredientLines']:
-            ingredient += ing + ', '
+            ingredient += ing + '\n'
             
         cur.execute('''INSERT INTO Recipes (main_product, dish, ingredients, calories) 
             VALUES (?,?,?,?)''',(product, dish, ingredient, calories) )
