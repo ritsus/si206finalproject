@@ -7,33 +7,16 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 
+API_KEY = "AIzaSyA9HPy3JeHaifs-GlLrG6ydbngZqIrEL6s"
 
-querystring = {"source":"{source}","target":"{target}","input":"{input}"}
+def translateText(targetLanCode, text):
 
-headers = {
-    'x-rapidapi-host': "systran-systran-platform-for-language-processing-v1.p.rapidapi.com",
-    'x-rapidapi-key': "86e1254777msh4331a57cf3bc755p11f980jsnceff71f415ab"
-    }
+  resp = requests.get('https://translation.googleapis.com/language/translate/v2?target={}&key={}&q={}'.format(targetLanCode, API_KEY, text))
+  return resp.json()['data']['translations'][0]['translatedText']
 
-
-
-# API https://rapidapi.com/systran/api/systran-io-translation-and-nlp
-def translator_url()
-    key = "86e1254777msh4331a57cf3bc755p11f980jsnceff71f415ab"
-    key_url = "apiKey=" + key
-    url = "https://systran-systran-platform-for-language-processing-v1.p.rapidapi.com/translation/text/translate"
-    response = requests.request("GET", url, headers=headers, params=querystring)
-    print(response.text)
-    return url  
+print(translateText('es', 'I like cookies'))
 
 
 
 
 
-
-def main():
-    path = os.path.dirname(os.path.abspath(__file__))
-    conn = sqlite3.connect(path+'/'+'Food Data' + ".db")
-    cur = conn.cursor()
-if __name__ == "__main__":
-    main()
