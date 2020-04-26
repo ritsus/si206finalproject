@@ -1,0 +1,1 @@
+{"Deep Fried Fish Bones": 3.6263, "Perfect Grilled Fish Steaks": 5.9826999999999995, "Burnt-Scallion Fish": 8.336300000000001, "How to Saute Fish": 5.6208, "Homemade fish fingers": 10.0849, "Three-Millennia Fish": 19.4691, "Gefilte Fish": 29.114499999999992}
