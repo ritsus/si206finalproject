@@ -9,12 +9,10 @@ def create_request_url(product):
     food_search_app_key = "866dcff09fa31e2e0e2249d52177fe20"
     # ingredient_key = "8df685917a724c55a3418820ffade1dc"
     # ingredient_key = "29e9db09a08e4ee29dfa3679d6d698ae"
-    ingredient_key = "9fc298539bbd4f6f802a43347cad44e4"
-    translation_API_KEY = "AIzaSyA9HPy3JeHaifs-GlLrG6ydbngZqIrEL6s"
+    # ingredient_key = "9fc298539bbd4f6f802a43347cad44e4"
+    ingredient_key = "57aedad6ec9349a390d0d63b37635c4c"
     food_search_url = "https://api.edamam.com/search?q={}&app_id={}&app_key={}".format(product, food_search_app_id, food_search_app_key)
     ingredient_url = "https://api.spoonacular.com/recipes/parseIngredients?apiKey=" + ingredient_key
-    # translation_url = "https://translation.googleapis.com/language/translate/v2?target={}&key={}&q={}".format(targetLanCode, API_KEY, text)
-    #retrieves 100 recipes for the product given
     return(food_search_url, ingredient_url)
 
     # API Request - recipe search
@@ -92,7 +90,7 @@ def requestCost(cur, conn, product, ingredient_url):
             payload = {'ingredientList': ingre_list}
             r = requests.post(ingredient_url, data=payload)
             d = json.loads(r.text)
-            if d["code"] == 402:
+            if len(d) < 2:
                 print("Daily limit reached, API limit 150 points/day")
                 break
             print("Request from API")
