@@ -15,9 +15,7 @@ def translateText(targetLanCode, text):
 
   #print(translateText('es', 'I like cookies'))
 
-def languages():
-    language = input("Enter translated language:")
-    language.lower() 
+def lang_abr(language):
     #only the top 50 langauges used in the world are available 
     Lang_abr = {'chinese': 'chi', 'english' : 'en', 'spanish': 'es', 'arabic': 'ar', 'begali': 'bn', 'hindi': 'hi', 'russian' : 'ru', 'portuguese': 'pt',
         'japanese': 'ja','german': 'de', 'Javanese':'jv', 'korean': 'ko','french':'fr', 'turkish':'tr', 'vietnamese': 'vi', 'Telugu':'te', 'marathi': 'mr',
@@ -25,21 +23,14 @@ def languages():
         'punjabi': 'pa', 'sunda': 'su', 'romanian': 'rm', 'bhojpuri':'bh', 'azerbaijani': 'az', 'maithili': 'bh', 'hausa': 'ha', 'burmese': 'my', 'serbian': 'sr',
         'thai': 'th', 'dutch':'nl', 'yoruba': 'yo', 'sindhi': 'sd', 'slovak':'sk', 'swahili':'sw'}
         #taken from https://photius.com/rankings/languages2.html
-    while True:
-      if language in Lang_abr:
-        abr = Lang_abr[language]
-        text = "I like apple"
-        #insert the function or text that will be translated where text is 
-        print(translateText(abr,text))
-        break
-      else:
-        language = input("That is not a valid language. Try again: ")
-        language.lower()
+    language.lower()
+    if language in Lang_abr:
+      abr = Lang_abr[language]
+      return abr
+      #insert the function or text that will be translated where text is 
+      # print(translateText(abr,text))
+    else:
+      print("invalid language, default to English")
+      return "en"
 
-def main():
-  languages()
-
-
-if __name__ == "__main__":
-  main()
     
