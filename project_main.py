@@ -9,7 +9,10 @@ if __name__ == "__main__":
     abr = translation.lang_abr(language)
     product = input(translation.translateText(abr, "Type of food you are looking for (Ex. pork, beef, fish, etc.): "))
     mode = input(translation.translateText(abr, "What do you care about the most? 1 for calories, 2 for cost, 3 for nutritients: "))
-    product = translation.translateText(abr, product)
+    product = translation.translateText("en", product)
+    #print(product)
+    
+
     while True:
         if mode != "1" and mode != "2" and mode != "3":
             mode = input("Invalid mode! Try again:")
@@ -18,3 +21,4 @@ if __name__ == "__main__":
     request_and_store.main(product)
     Calculate.calculate_cost_and_write(abr, product)
     graph.main(mode, product)
+    
