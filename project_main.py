@@ -10,8 +10,7 @@ if __name__ == "__main__":
     product = input(translation.translateText(abr, "Type of food you are looking for (Ex. pork, beef, fish, etc.): "))
     mode = input(translation.translateText(abr, "What do you care about the most? 1 for calories, 2 for cost, 3 for nutritients: "))
     product = translation.translateText("en", product)
-    #print(product)
-    
+
 
     while True:
         if mode != "1" and mode != "2" and mode != "3":
